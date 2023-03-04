@@ -1,0 +1,4 @@
+CD significa color depth e le verioni da me eseguite sono state quella da 8 e quella da 16 perciò resoconto del lavoro:
+cartella CD8: 1 video con B-frame a 8 e a 60fps(702KB), 1 video con B-frame a 16 e a 30fps(0,98MB), 1 video con B-frame a 16 e a 60fps(702KB), 1 video antiorario con B-frame a 16 e a 30fps(0,98MB)
+cartella CD16: 1 video con B-frame a 8 e a 60fps(745KB), 1 video con B-frame a 16 e a 30fps(1,09MB), 1 video con B-frame a 16 e a 60fps(745KB), 1 video antiorario con B-frame a 16 e a 30fps(1,10MB)
+ps- tutti i video sono stati fatti ad HQ
