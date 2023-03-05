@@ -28,7 +28,12 @@ body {
 }
 
 .video-block .image-map__content {
-    z-index: 8;
+    position: relative;
+    z-index: 14;
+}
+
+.video-block .image-map__content .image-map__content__img {
+    margin-top: -6px;
 }
 
 .messaggio {
@@ -45,9 +50,16 @@ body {
     color: white;
     padding: 14px;
     opacity: 0;
-    z-index: 14;
+    z-index: 18;
     top: 148px;
     left: 50%;
+}
+.image-preview {
+    position: absolute;
+    /* position: relative; */
+    z-index: 12;
+    width: 100%;
+    height: 100%;
 }
 
 .messaggio.show-nome-pianeta {
@@ -55,25 +67,39 @@ body {
     opacity: 1;
 }
 
-.video-block .image-map__content__img {
-    /*transition: .1s all ease;*/
+.video-block .image-preview {
     visibility: visible;
     opacity: 1;
 }
 
-.video-block.showImage .image-map__content__img {
+.video-block.showImage .image-preview {
     visibility: hidden;
     opacity: 0;
 }
 
+
+
+
+
+
+
+
 .spinner-container {
+    transition: .48s all ease;
     position: fixed;
+    visibility: hidden;
+    opacity: 0;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255,255,255,.68);
+    background-color: rgba(255,255,255, 1);
     z-index: 9999999;
+}
+.spinner-container.true-loading {
+    visibility: visible;
+    opacity: 1;
+    
 }
 
 .loading-spinner {
@@ -82,7 +108,7 @@ body {
     left: 50%;
     width: 50px;
     height: 50px;
-    border: 10px solid #f3f3f3;
+    border: 10px solid #F3F3F3;
     border-top: 10px solid #383636;
     border-radius: 50%;
     animation: spinner 1.5s linear infinite;

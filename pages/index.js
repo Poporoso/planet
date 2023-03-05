@@ -4,13 +4,19 @@ import { ImageMap } from '@qiuz/react-image-map';
 import { useState, useRef, useEffect } from 'react';
 import Loading from '../components/Loading'
 
+import video1 from '../src/cd8/video-1.mp4'
+import video2 from '../src/cd8/video-2.mp4'
+
+import imageVideo1 from '/public/assets/images/imagine-nascosta-1.png'
+import imageVideo2 from '/public/assets/images/imagine-nascosta-2.png'
+
 export default function Home() {
 
     const [loading, setLoading] = useState(true);
     const [videoLoad, setVideoLoad] = useState(0);
 
     const [statusImage, setStatusImage] = useState(false)
-    const [immagineNascosta, setImmagineNascosta] = useState(1)
+    const [immagineNascosta, setImmagineNascosta] = useState(imageVideo1)
     const [nomePianeta, setNomePianeta] = useState('')
 
     const [styleVideo1, setStyleVideo1] = useState({
@@ -26,9 +32,9 @@ export default function Home() {
     const colorPianeti = 'rgba(255, 66, 200, .0)'
     const videoTotali = 2; /** Video totali nella pagina */
 
-    const video1 = useRef(null);
-    const video2 = useRef(null);
-    const video3 = useRef(null);
+    const video1Ref = useRef(null);
+    const video2Ref = useRef(null);
+    const video3Ref = useRef(null);
 
     const mapArea = [
         {
@@ -91,13 +97,13 @@ export default function Home() {
         */
         if (area.target === 'left') {
             nascondiImmagine()
-            video1.current.currentTime = 0;
+            video1Ref.current.currentTime = 0;
             playVideo(2)
             return
         }
         if (area.target === 'right') {
             nascondiImmagine()
-            video2.current.currentTime = 0;
+            video2Ref.current.currentTime = 0;
             playVideo(1)
             return
         }
@@ -106,24 +112,24 @@ export default function Home() {
     const playVideo = (step) => {
         setNomePianeta('')
         if (step === 1) {
-            setImmagineNascosta(1)
-            video1.current.play()
-            video1.current.addEventListener('ended', function () {
+            setImmagineNascosta(imageVideo1)
+            video1Ref.current.play()
+            video1Ref.current.addEventListener('ended', function () {
                 console.log('video 1 finito')
                 setStyleVideo1({ zIndex: 6 })
                 setStyleVideo2({ zIndex: 2 })
-                setNomePianeta('pianeta 1')
+                setNomePianeta('pianeta 2')
                 mostraImmagine()
             })
         }
         else {
-            setImmagineNascosta(2)
-            video2.current.play()
-            video2.current.addEventListener('ended', function () {
+            setImmagineNascosta(imageVideo2)
+            video2Ref.current.play()
+            video2Ref.current.addEventListener('ended', function () {
                 console.log('video 2 finito')
                 setStyleVideo1({ zIndex: 2 })
                 setStyleVideo2({ zIndex: 6 })
-                setNomePianeta('pianeta 2')
+                setNomePianeta('pianeta 1')
                 mostraImmagine()
             })
         }
@@ -134,39 +140,37 @@ export default function Home() {
     }
 
     useEffect(() => {
-        if (videoLoad >= videoTotali) {
+        setTimeout(function () {
             setLoading(false)
-        }
-    }, [videoLoad]);
-
-    useEffect(() => {
-        setLoading(false)
+        }, 1680)
     }, []);
 
     return (
 
         <>
-            {loading && <Loading />}
+            <Loading loading={loading} />
 
             <div className={`video-block ${statusImage ? 'showImage' : ''}`}>
 
                 <div className={`messaggio ${!nomePianeta || 'show-nome-pianeta'}`}>{nomePianeta}</div>
 
+
+                <Image src={immagineNascosta} height={1080} width={1920} priority="true" alt="immagine Anteprima" className="image-preview" />
                 <div className="step step-1">
 
-                    <video width="100%" className="video-box" ref={video2} style={styleVideo1} onLoadedData={() => load()}>
-                        <source src={'src/cd8/video-2.mp4'} type="video/mp4" />
+                    <video width="100%" className="video-box" ref={video2Ref} style={styleVideo1} onLoadedData={() => load()}>
+                        <source rel="prefetch" src={video2} type="video/mp4" />
                         Sorry, your browser doesn&apos;t support embedded videos.
                     </video>
 
-                    <video width="100%" className="video-box" ref={video1} style={styleVideo2} onLoadedData={() => load()}>
-                        <source src={'src/cd8/video-1.mp4'} type="video/mp4" />
+                    <video width="100%" className="video-box" ref={video1Ref} style={styleVideo2} onLoadedData={() => load()}>
+                        <source rel="prefetch" src={video1} type="video/mp4" />
                         Sorry, your browser doesn&apos;t support embedded videos.
                     </video>
 
                     <ImageMap
                         className="usage-map"
-                        src={`src/Immagini/imagine-nascosta-${immagineNascosta}.png`}
+                        src={'../assets/images/maschera.png'}
                         map={mapArea}
                         onMapClick={onMapClick}
                     />

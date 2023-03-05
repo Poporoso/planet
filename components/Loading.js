@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function Loading() {
+export default function Loading({ loading }) {
+
     return (
-        <div className="spinner-container">
-            <div className="loading-spinner">
-            </div>
+        <div className={`spinner-container ${loading ? 'true-loading' : ''}`}>
+            <div className="loading-spinner"></div>
         </div>
     );
 }
