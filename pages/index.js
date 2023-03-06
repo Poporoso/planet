@@ -41,7 +41,7 @@ export default function Home() {
         zIndex: 2
     })
 
-    const colorPianeti = 'rgba(255, 66, 200, .2)'
+    const colorPianeti = 'rgba(255, 66, 200, .0)'
     const videoTotali = 5; /** Video totali nella pagina */
 
     const video1Ref = useRef(null);
