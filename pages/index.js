@@ -9,6 +9,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import video1 from '../src/cd8/video-1.mp4'
 import video2 from '../src/cd8/video-2.mp4'
+import video3 from '../src/cd8/video-3.mp4'
+import video4 from '../src/cd8/video-4.mp4'
+import video5 from '../src/cd8/video-5.mp4'
 
 import imageVideo1 from '/public/assets/images/imagine-nascosta-1.png'
 import imageVideo2 from '/public/assets/images/imagine-nascosta-2.png'
@@ -26,9 +29,15 @@ export default function Home() {
         zIndex: 6
     })
     const [styleVideo2, setStyleVideo2] = useState({
-        zIndex: 4
+        zIndex: 5
     })
     const [styleVideo3, setStyleVideo3] = useState({
+        zIndex: 4
+    })
+    const [styleVideo4, setStyleVideo4] = useState({
+        zIndex: 3
+    })
+    const [styleVideo5, setStyleVideo5] = useState({
         zIndex: 2
     })
 
@@ -38,6 +47,8 @@ export default function Home() {
     const video1Ref = useRef(null);
     const video2Ref = useRef(null);
     const video3Ref = useRef(null);
+    const video4Ref = useRef(null);
+    const video5Ref = useRef(null);
 
     const mapArea = [
         {
@@ -161,7 +172,8 @@ export default function Home() {
                             <div className={`messaggio ${!nomePianeta || 'show-nome-pianeta'}`}>{nomePianeta}</div>
 
 
-                            <Image src={immagineNascosta} height={1080} width={1920} priority="true" alt="immagine Anteprima" className="image-preview" />
+                            { /* <Image src={immagineNascosta} height={1080} width={1920} priority="true" alt="immagine Anteprima" className="image-preview" /> */}
+
                             <div className="step step-1">
 
                                 <video width="100%" className="video-box" ref={video2Ref} style={styleVideo1} onLoadedData={() => load()}>
@@ -171,6 +183,21 @@ export default function Home() {
 
                                 <video width="100%" className="video-box" ref={video1Ref} style={styleVideo2} onLoadedData={() => load()}>
                                     <source rel="prefetch" src={video1} type="video/mp4" />
+                                    Sorry, your browser doesn&apos;t support embedded videos.
+                                </video>
+
+                                <video width="100%" className="video-box" ref={video3Ref} style={styleVideo3} onLoadedData={() => load()}>
+                                    <source rel="prefetch" src={video3} type="video/mp4" />
+                                    Sorry, your browser doesn&apos;t support embedded videos.
+                                </video>
+
+                                <video width="100%" className="video-box" ref={video4Ref} style={styleVideo4} onLoadedData={() => load()}>
+                                    <source rel="prefetch" src={video4} type="video/mp4" />
+                                    Sorry, your browser doesn&apos;t support embedded videos.
+                                </video>
+
+                                <video width="100%" className="video-box" ref={video5Ref} style={styleVideo5} onLoadedData={() => load()}>
+                                    <source rel="prefetch" src={video5} type="video/mp4" />
                                     Sorry, your browser doesn&apos;t support embedded videos.
                                 </video>
 
@@ -188,8 +215,6 @@ export default function Home() {
                     </Col>
                 </Row>
             </Container>
-
-
         </>
 
     )
