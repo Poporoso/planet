@@ -41,8 +41,8 @@ export default function Home() {
         zIndex: 2
     })
 
-    const colorPianeti = 'rgba(255, 66, 200, .0)'
-    const videoTotali = 2; /** Video totali nella pagina */
+    const colorPianeti = 'rgba(255, 66, 200, .2)'
+    const videoTotali = 5; /** Video totali nella pagina */
 
     const video1Ref = useRef(null);
     const video2Ref = useRef(null);
@@ -54,9 +54,9 @@ export default function Home() {
         {
             name: 'Pianeta Destra',
             target: 'right',
-            width: '11%',
-            height: '19%',
-            left: '63.5%',
+            width: '17%',
+            height: '22%',
+            left: '61.5%',
             top: '36.8%',
             style: {
                 background: colorPianeti, borderRadius: '50%',
@@ -81,8 +81,8 @@ export default function Home() {
         },
         {
             name: 'Pianeta Centrale',
-            target: null,
-            width: '27%',
+            target: 'centro',
+            width: '30%',
             height: '48%',
             left: '35%',
             top: '44%',
@@ -110,15 +110,23 @@ export default function Home() {
             // console.log(area.target)
         */
         if (area.target === 'left') {
+            document.querySelector('[target="left"]').style.display = 'none';
+            document.querySelector('[target="right"]').style.display = 'block';
             nascondiImmagine()
             video1Ref.current.currentTime = 0;
             playVideo(2)
             return
         }
         if (area.target === 'right') {
+            document.querySelector('[target="left"]').style.display = 'block';
+            document.querySelector('[target="right"]').style.display = 'none';
             nascondiImmagine()
             video2Ref.current.currentTime = 0;
             playVideo(1)
+            return
+        }
+        if (area.target === 'centro') {
+            nascondiImmagine()
             return
         }
     }
@@ -132,18 +140,18 @@ export default function Home() {
                 console.log('video 1 finito')
                 setStyleVideo1({ zIndex: 6 })
                 setStyleVideo2({ zIndex: 2 })
-                setNomePianeta('pianeta 2')
+                setNomePianeta('Mars')
                 mostraImmagine()
             })
         }
-        else {
+        else if (step === 2) {
             setImmagineNascosta(imageVideo2)
             video2Ref.current.play()
             video2Ref.current.addEventListener('ended', function () {
                 console.log('video 2 finito')
                 setStyleVideo1({ zIndex: 2 })
                 setStyleVideo2({ zIndex: 6 })
-                setNomePianeta('pianeta 1')
+                setNomePianeta('Venus')
                 mostraImmagine()
             })
         }
@@ -154,6 +162,8 @@ export default function Home() {
     }
 
     useEffect(() => {
+        document.querySelector('[target="right"]').style.display = 'none';
+        setNomePianeta('Mars')
         setTimeout(function () {
             setLoading(false)
         }, 1680)
@@ -164,7 +174,7 @@ export default function Home() {
         <>
             <Loading loading={loading} />
 
-            <Container>
+            <Container fluid>
                 <Row>
                     <Col>
                         <div className={`video-block ${statusImage ? 'showImage' : ''}`}>
@@ -211,7 +221,6 @@ export default function Home() {
                             </div>
 
                         </div>
-                        <h1 style={{ marginTop: 24, textAlign: 'center' }}>Video Caricati: {videoLoad}</h1>
                     </Col>
                 </Row>
             </Container>
