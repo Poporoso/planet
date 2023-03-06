@@ -55,6 +55,7 @@ export default function Home() {
             name: 'Pianeta Destra',
             target: 'right',
             width: '17%',
+            cursor: 'pointer',
             height: '22%',
             left: '61.5%',
             top: '36.8%',
@@ -71,6 +72,7 @@ export default function Home() {
             width: '12%',
             height: '20%',
             left: '22.1%',
+            cursor: 'pointer',
             top: '37%',
             style: {
                 background: colorPianeti, borderRadius: '50%',
@@ -82,6 +84,7 @@ export default function Home() {
         {
             name: 'Pianeta Centrale',
             target: 'centro',
+            cursor: 'pointer',
             width: '30%',
             height: '48%',
             left: '35%',
@@ -174,56 +177,50 @@ export default function Home() {
         <>
             <Loading loading={loading} />
 
-            <Container fluid>
-                <Row>
-                    <Col>
-                        <div className={`video-block ${statusImage ? 'showImage' : ''}`}>
+            <div className={`video-block ${statusImage ? 'showImage' : ''}`}>
 
-                            <div className={`messaggio ${!nomePianeta || 'show-nome-pianeta'}`}>{nomePianeta}</div>
+                <div className={`messaggio ${!nomePianeta || 'show-nome-pianeta'}`}>{nomePianeta}</div>
 
 
-                            { /* <Image src={immagineNascosta} height={1080} width={1920} priority="true" alt="immagine Anteprima" className="image-preview" /> */}
+                { /* <Image src={immagineNascosta} height={1080} width={1920} priority="true" alt="immagine Anteprima" className="image-preview" /> */}
 
-                            <div className="step step-1">
+                <div className="step step-1">
 
-                                <video width="100%" className="video-box" ref={video2Ref} style={styleVideo1} onLoadedData={() => load()}>
-                                    <source rel="prefetch" src={video2} type="video/mp4" />
-                                    Sorry, your browser doesn&apos;t support embedded videos.
-                                </video>
+                    <video width="100%" className="video-box" ref={video2Ref} style={styleVideo1} onLoadedData={() => load()}>
+                        <source rel="prefetch" src={video2} type="video/mp4" />
+                        Sorry, your browser doesn&apos;t support embedded videos.
+                    </video>
 
-                                <video width="100%" className="video-box" ref={video1Ref} style={styleVideo2} onLoadedData={() => load()}>
-                                    <source rel="prefetch" src={video1} type="video/mp4" />
-                                    Sorry, your browser doesn&apos;t support embedded videos.
-                                </video>
+                    <video width="100%" className="video-box" ref={video1Ref} style={styleVideo2} onLoadedData={() => load()}>
+                        <source rel="prefetch" src={video1} type="video/mp4" />
+                        Sorry, your browser doesn&apos;t support embedded videos.
+                    </video>
 
-                                <video width="100%" className="video-box" ref={video3Ref} style={styleVideo3} onLoadedData={() => load()}>
-                                    <source rel="prefetch" src={video3} type="video/mp4" />
-                                    Sorry, your browser doesn&apos;t support embedded videos.
-                                </video>
+                    <video width="100%" className="video-box" ref={video3Ref} style={styleVideo3} onLoadedData={() => load()}>
+                        <source rel="prefetch" src={video3} type="video/mp4" />
+                        Sorry, your browser doesn&apos;t support embedded videos.
+                    </video>
 
-                                <video width="100%" className="video-box" ref={video4Ref} style={styleVideo4} onLoadedData={() => load()}>
-                                    <source rel="prefetch" src={video4} type="video/mp4" />
-                                    Sorry, your browser doesn&apos;t support embedded videos.
-                                </video>
+                    <video width="100%" className="video-box" ref={video4Ref} style={styleVideo4} onLoadedData={() => load()}>
+                        <source rel="prefetch" src={video4} type="video/mp4" />
+                        Sorry, your browser doesn&apos;t support embedded videos.
+                    </video>
 
-                                <video width="100%" className="video-box" ref={video5Ref} style={styleVideo5} onLoadedData={() => load()}>
-                                    <source rel="prefetch" src={video5} type="video/mp4" />
-                                    Sorry, your browser doesn&apos;t support embedded videos.
-                                </video>
+                    <video width="100%" className="video-box" ref={video5Ref} style={styleVideo5} onLoadedData={() => load()}>
+                        <source rel="prefetch" src={video5} type="video/mp4" />
+                        Sorry, your browser doesn&apos;t support embedded videos.
+                    </video>
 
-                                <ImageMap
-                                    className="usage-map"
-                                    src={'../assets/images/maschera.png'}
-                                    map={mapArea}
-                                    onMapClick={onMapClick}
-                                />
+                    <ImageMap
+                        className="usage-map"
+                        src={'../assets/images/maschera.png'}
+                        map={mapArea}
+                        onMapClick={onMapClick}
+                    />
 
-                            </div>
+                </div>
 
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
+            </div>
         </>
 
     )
