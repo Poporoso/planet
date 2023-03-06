@@ -36,6 +36,10 @@ body {
     margin-top: 0;
 }
 
+.image-map__map {
+    cursor: pointer;
+}
+
 .messaggio {
     background-color: rgba(128, 0, 128, .62);
     transform: translateX(-50%);
