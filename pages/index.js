@@ -3,6 +3,9 @@ import Image from 'next/image'
 import { ImageMap } from '@qiuz/react-image-map';
 import { useState, useRef, useEffect } from 'react';
 import Loading from '../components/Loading'
+import { Container, Row, Col } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import video1 from '../src/cd8/video-1.mp4'
 import video2 from '../src/cd8/video-2.mp4'
@@ -150,35 +153,43 @@ export default function Home() {
         <>
             <Loading loading={loading} />
 
-            <div className={`video-block ${statusImage ? 'showImage' : ''}`}>
+            <Container>
+                <Row>
+                    <Col>
+                        <div className={`video-block ${statusImage ? 'showImage' : ''}`}>
 
-                <div className={`messaggio ${!nomePianeta || 'show-nome-pianeta'}`}>{nomePianeta}</div>
+                            <div className={`messaggio ${!nomePianeta || 'show-nome-pianeta'}`}>{nomePianeta}</div>
 
 
-                <Image src={immagineNascosta} height={1080} width={1920} priority="true" alt="immagine Anteprima" className="image-preview" />
-                <div className="step step-1">
+                            <Image src={immagineNascosta} height={1080} width={1920} priority="true" alt="immagine Anteprima" className="image-preview" />
+                            <div className="step step-1">
 
-                    <video width="100%" className="video-box" ref={video2Ref} style={styleVideo1} onLoadedData={() => load()}>
-                        <source rel="prefetch" src={video2} type="video/mp4" />
-                        Sorry, your browser doesn&apos;t support embedded videos.
-                    </video>
+                                <video width="100%" className="video-box" ref={video2Ref} style={styleVideo1} onLoadedData={() => load()}>
+                                    <source rel="prefetch" src={video2} type="video/mp4" />
+                                    Sorry, your browser doesn&apos;t support embedded videos.
+                                </video>
 
-                    <video width="100%" className="video-box" ref={video1Ref} style={styleVideo2} onLoadedData={() => load()}>
-                        <source rel="prefetch" src={video1} type="video/mp4" />
-                        Sorry, your browser doesn&apos;t support embedded videos.
-                    </video>
+                                <video width="100%" className="video-box" ref={video1Ref} style={styleVideo2} onLoadedData={() => load()}>
+                                    <source rel="prefetch" src={video1} type="video/mp4" />
+                                    Sorry, your browser doesn&apos;t support embedded videos.
+                                </video>
 
-                    <ImageMap
-                        className="usage-map"
-                        src={'../assets/images/maschera.png'}
-                        map={mapArea}
-                        onMapClick={onMapClick}
-                    />
+                                <ImageMap
+                                    className="usage-map"
+                                    src={'../assets/images/maschera.png'}
+                                    map={mapArea}
+                                    onMapClick={onMapClick}
+                                />
 
-                </div>
+                            </div>
 
-            </div>
-            <h1 style={{ textAlign: 'center' }}>Video Caricati: {videoLoad}</h1>
+                        </div>
+                        <h1 style={{ marginTop: 24, textAlign: 'center' }}>Video Caricati: {videoLoad}</h1>
+                    </Col>
+                </Row>
+            </Container>
+
+
         </>
 
     )
